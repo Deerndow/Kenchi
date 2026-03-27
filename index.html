@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capsule</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div id="app">
+
+      <!-- MAIN VIEW — two images layered pixel-perfectly, entire thing is clickable -->
+      <main id="mainView" class="view active">
+        <div id="mainTap" class="page-tap">
+          <img src="images/Main Page.png" class="page-img" alt="Memories" />
+        </div>
+      </main>
+
+      <!-- BOTTOM NAV -->
+      <nav class="bottom-nav" id="mainNav">
+        <button class="nav-btn active" id="navTimeline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="2"/>
+          </svg>
+          <span>Timeline</span>
+        </button>
+        <button class="nav-btn nav-center" id="uploadNavBtn">
+          <div class="nav-plus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <button class="nav-btn" id="navProfile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>You</span>
+        </button>
+      </nav>
+
+    </div>
+
+    <!-- MEMORY OVERLAY -->
+    <div id="memoryView" class="page-overlay hidden">
+      <div class="overlay-img-wrap">
+        <img src="images/Memory Page.png" class="page-img" alt="Memory" />
+      </div>
+      <nav class="bottom-nav">
+        <button class="nav-btn active" id="memNavTimeline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="2"/>
+          </svg>
+          <span>Timeline</span>
+        </button>
+        <button class="nav-btn nav-center" id="memNavUploadBtn">
+          <div class="nav-plus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <button class="nav-btn" id="memNavProfile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>You</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- PROFILE OVERLAY -->
+    <div id="profileView" class="page-overlay hidden">
+      <div class="overlay-img-wrap">
+        <img src="images/Profile page.png" class="page-img" alt="Profile" />
+      </div>
+      <nav class="bottom-nav">
+        <button class="nav-btn" id="profileNavTimeline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="2"/>
+          </svg>
+          <span>Timeline</span>
+        </button>
+        <button class="nav-btn nav-center" id="profileNavUploadBtn">
+          <div class="nav-plus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <button class="nav-btn active" id="profileNavProfile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>You</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- UPLOAD MODAL -->
+    <div id="uploadModal" class="modal hidden">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-sheet">
+        <div class="modal-handle"></div>
+
+        <div class="steps-indicator">
+          <div class="step active" data-step="1">1</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="2">2</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="3">3</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="4">4</div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="step-content active" id="step1">
+          <h2 class="step-title">When was this?</h2>
+          <p class="step-sub">Pick the month and year for this memory.</p>
+          <div class="form-group">
+            <label>Month</label>
+            <select id="monthSelect">
+              <option value="">Select month</option>
+              <option value="0">January</option><option value="1">February</option>
+              <option value="2">March</option><option value="3">April</option>
+              <option value="4">May</option><option value="5">June</option>
+              <option value="6">July</option><option value="7">August</option>
+              <option value="8">September</option><option value="9">October</option>
+              <option value="10">November</option><option value="11">December</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Year</label>
+            <select id="yearSelect"></select>
+          </div>
+          <button class="btn-primary" id="step1Next">Continue →</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-content" id="step2">
+          <h2 class="step-title">Add photos</h2>
+          <p class="step-sub">Upload as many as you like. AI picks the best ones.</p>
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" multiple accept="image/*" hidden/>
+            <div class="upload-zone-inner" id="uploadZoneClick">
+              <div class="upload-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <span>Tap to upload</span>
+            </div>
+            <div id="photoPreviewGrid" class="photo-preview-grid"></div>
+          </div>
+          <div class="form-group">
+            <label>Labels <span class="hint">— press Enter to add</span></label>
+            <input type="text" id="tagInput" placeholder="e.g. summer, family"/>
+            <div id="tagsPreview" class="tags-preview"></div>
+          </div>
+          <button class="btn-primary" id="step2Next">Continue →</button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-content" id="step3">
+          <h2 class="step-title">Places visited</h2>
+          <p class="step-sub">Where did this memory happen?</p>
+          <div class="form-group">
+            <label>Add place <span class="hint">— press Enter</span></label>
+            <input type="text" id="locationInput" placeholder="e.g. Rome, Trevi Fountain"/>
+            <div id="locationsPreview" class="locations-preview"></div>
+          </div>
+          <button class="btn-primary" id="step3Next">Continue →</button>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step-content" id="step4">
+          <h2 class="step-title">Pick a style</h2>
+          <p class="step-sub">Choose how your collage looks.</p>
+          <div class="style-options" id="styleOptions">
+            <div class="style-option active" data-style="cutouts">
+              <div class="style-preview style-preview-grid">
+                <div></div><div></div><div></div><div></div>
+              </div>
+              <span>Cutouts</span>
+            </div>
+            <div class="style-option" data-style="polaroid">
+              <div class="style-preview style-preview-polaroid">
+                <div class="sp-pol sp-pol-1"></div>
+                <div class="sp-pol sp-pol-2"></div>
+                <div class="sp-pol sp-pol-3"></div>
+              </div>
+              <span>Polaroid</span>
+            </div>
+            <div class="style-option" data-style="filmstrip">
+              <div class="style-preview style-preview-film">
+                <div></div><div></div><div></div>
+              </div>
+              <span>Film</span>
+            </div>
+            <div class="style-option" data-style="magazine">
+              <div class="style-preview style-preview-mag">
+                <div class="sp-hero"></div>
+                <div class="sp-subs"><div></div><div></div></div>
+              </div>
+              <span>Magazine</span>
+            </div>
+          </div>
+          <button class="btn-primary" id="step4Generate">Generate collage</button>
+        </div>
+
+        <!-- GENERATING -->
+        <div class="step-content" id="stepGenerating">
+          <div class="generating-state">
+            <div class="gen-animation">
+              <div class="gen-circle"></div>
+              <div class="gen-circle"></div>
+              <div class="gen-circle"></div>
+            </div>
+            <h2 class="step-title">Crafting your memory…</h2>
+            <p class="step-sub" id="genSubtext">Picking your best shots</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
